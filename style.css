@@ -466,94 +466,6 @@ img { max-width: 100%; display: block; }
 }
 
 /* ============================================
-   Work / Portfolio
-   ============================================ */
-
-.work {
-  padding: 120px 0;
-  background: var(--color-surface);
-}
-
-.work__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.work-card {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  height: 320px;
-  background: var(--color-surface-2);
-  border: 1px solid var(--color-border);
-  cursor: pointer;
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.work-card.animate-in {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.6s var(--ease-out);
-}
-
-.work-card--wide { grid-column: span 2; }
-
-.work-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg,
-    rgba(201, 168, 76, 0.05),
-    rgba(201, 168, 76, 0.02));
-  z-index: 1;
-}
-
-.work-card__overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 32px;
-  background: linear-gradient(to top, rgba(10, 10, 10, 0.95), transparent);
-  z-index: 2;
-  transform: translateY(20px);
-  opacity: 0.8;
-  transition: all 0.4s var(--ease);
-}
-
-.work-card:hover .work-card__overlay {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.work-card:hover {
-  border-color: var(--color-accent);
-}
-
-.work-card__cat {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--color-accent);
-  margin-bottom: 8px;
-  display: block;
-}
-
-.work-card__overlay h3 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.work-card__overlay p {
-  font-size: 0.88rem;
-  color: var(--color-text-muted);
-}
-
-/* ============================================
    CTA
    ============================================ */
 
@@ -729,6 +641,15 @@ img { max-width: 100%; display: block; }
   color: var(--color-text-muted);
 }
 
+.footer__bottom a {
+  color: var(--color-text-muted);
+  transition: color 0.3s;
+}
+
+.footer__bottom a:hover {
+  color: var(--color-accent);
+}
+
 /* ============================================
    Animations
    ============================================ */
@@ -752,8 +673,6 @@ img { max-width: 100%; display: block; }
   .services__grid { grid-template-columns: repeat(2, 1fr); }
   .stats__grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
   .about__inner { grid-template-columns: 1fr; gap: 48px; }
-  .work__grid { grid-template-columns: 1fr 1fr; }
-  .work-card--wide { grid-column: span 2; }
   .contact__inner { grid-template-columns: 1fr; gap: 48px; }
   .footer__inner { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
@@ -780,9 +699,6 @@ img { max-width: 100%; display: block; }
 
   .services__grid { grid-template-columns: 1fr; }
   .stats__grid { grid-template-columns: 1fr 1fr; }
-  .work__grid { grid-template-columns: 1fr; }
-  .work-card--wide { grid-column: span 1; }
-  .work-card { height: 260px; }
   .footer__inner { grid-template-columns: 1fr; }
   .hero__title { font-size: clamp(2.2rem, 8vw, 3.2rem); }
 }
