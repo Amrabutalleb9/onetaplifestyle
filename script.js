@@ -1,24 +1,28 @@
 // Nav scroll effect
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('nav--scrolled', window.scrollY > 60);
-});
+if (nav) {
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('nav--scrolled', window.scrollY > 60);
+  });
+}
 
 // Mobile menu toggle
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 
-navToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-  navToggle.classList.toggle('active');
-});
-
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('active');
-    navToggle.classList.remove('active');
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    navToggle.classList.toggle('active');
   });
-});
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      navToggle.classList.remove('active');
+    });
+  });
+}
 
 // Scroll-triggered animations
 const animateElements = document.querySelectorAll('[data-animate]');
@@ -69,14 +73,43 @@ const counterObserver = new IntersectionObserver((entries) => {
 counters.forEach(el => counterObserver.observe(el));
 
 // Contact form handler
-document.getElementById('contactForm').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const btn = e.target.querySelector('button[type="submit"]');
-  btn.textContent = 'Message Sent!';
-  btn.style.background = '#2ecc71';
-  setTimeout(() => {
-    btn.textContent = 'Send Message';
-    btn.style.background = '';
-    e.target.reset();
-  }, 3000);
-});
+var contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = 'Message Sent!';
+    btn.style.background = '#2ecc71';
+    setTimeout(() => {
+      btn.textContent = 'Send Message';
+      btn.style.background = '';
+      e.target.reset();
+    }, 3000);
+  });
+}
+
+// Cookie consent banner
+(function() {
+  var banner = document.getElementById('cookieBanner');
+  if (!banner) return;
+
+  if (!localStorage.getItem('cookie_consent')) {
+    setTimeout(function() { banner.classList.add('visible'); }, 1000);
+  }
+
+  var acceptBtn = document.getElementById('cookieAccept');
+  var declineBtn = document.getElementById('cookieDecline');
+
+  if (acceptBtn) {
+    acceptBtn.addEventListener('click', function() {
+      localStorage.setItem('cookie_consent', 'accepted');
+      banner.classList.remove('visible');
+    });
+  }
+  if (declineBtn) {
+    declineBtn.addEventListener('click', function() {
+      localStorage.setItem('cookie_consent', 'declined');
+      banner.classList.remove('visible');
+    });
+  }
+})();
